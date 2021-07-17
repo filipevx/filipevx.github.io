@@ -1,10 +1,10 @@
 $(document).ready(function(){var e;$(".home__banner").slick({dots:!0,infinite:!0,slidesToShow:1,slidesToScroll:1,arrows:!1}),(e=sessionStorage.getItem("minicartCounter"))&&$(".header__minicart .minicart__counter span").html(e),$.ajax({url:"https://corebiz-test.herokuapp.com/api/v1/products",type:"GET"}).done(function(e){e.map(e=>$(".home__shelf .container ul.shelf").append(`<li class="shelf__item">
-	        	<a href="#linkproduto">
+	        	<a href="#linkproduto" title="${e.productName}">
 	          	<img class='shelf__image' loading='lazy' src="${e.imageUrl}" alt="${e.productName}" width="216" height="200"/>
 	          </a>
 			  ${e.listPrice?"<span class='shelf__flag shelf__flag--off'>off</span> </span>":""}
 	          <div class='shelf__content'>
-		          <a href="#linkproduto"><p class='shelf__name'>${e.productName}</p></a>
+		          <a href="#linkproduto" title="${e.productName}"><p class='shelf__name'>${e.productName}</p></a>
 		          <span class='shelf__rating shelf__rating--${e.stars}'>${e.stars}</span>
 		          ${e.listPrice?`<span class='shelf__listprice'>de <span>${(e.listPrice/100).toLocaleString("pt-BR",{style:"currency",currency:"BRL"}).replace(".",",")}</span> </span>`:"<span class='shelf__listprice'></span>"}
 		          ${e.listPrice?`<span class='shelf__bestprice'> por ${(e.price/100).toLocaleString("pt-BR",{style:"currency",currency:"BRL"}).replace(".",",")} </span>`:`<span class='shelf__bestprice'> ${(e.price/100).toLocaleString("pt-BR",{style:"currency",currency:"BRL"}).replace(".",",")} </span>`}
